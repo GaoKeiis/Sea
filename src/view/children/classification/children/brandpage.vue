@@ -2,13 +2,15 @@
 <div class="brandpage">
   <div>
     <div class="m-brandlist">
-      <dl v-for='item in brandData.Records'>
-        <dt><img :src="item.PictureWebp" alt=""></dt>
-        <dd>
-          <h6>{{item.SlideName}}</h6>
-          <p class="nowrap">{{item.Description}}</p>
-        </dd>
+      <router-link  v-for='item in brandData.Records' :to="{ name: 'fenpage',params:{Subject:item.CastID} }" class='brandpage-dls'>
+        <dl>
+          <dt><img :src="item.PictureWebp" alt=""></dt>
+          <dd>
+            <h6>{{item.SlideName}}</h6>
+            <p class="nowrap">{{item.Description}}</p>
+          </dd>
       </dl>
+      </router-link>
     </div>
   </div>
 </div>
@@ -17,11 +19,7 @@
 <script>
 export default {
 	name: 'brandpage',
-  props: ['brandData'],
-  data () {
-    return {
-    }
-  }
+  props: ['brandData']
 }
 
 </script>
@@ -31,21 +29,23 @@ export default {
 .m-brandlist{
   display: flex;
   flex-wrap: wrap;
-  dl{
+  .brandpage-dls {
     width: 33.3%;
-    dt{
-      width: 100%;
-      img{
+    dl{
+      dt{
         width: 100%;
+        img{
+          width: 100%;
+        }
       }
-    }
-    dd{
-      text-align: center;
-      p{
-        width: 80%;
-        color: #999;
-        padding-left: 10px;
-        padding-bottom: 3%;  
+      dd{
+        text-align: center;
+        p{
+          width: 80%;
+          color: #999;
+          padding-left: 10px;
+          padding-bottom: 3%;  
+        }
       }
     }
   }

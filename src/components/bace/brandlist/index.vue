@@ -4,7 +4,8 @@
       <img :src="brandlist1data.title">
     </div> 
     <div class="brandlist-cont">
-      <dl v-for='item in brandlist1data.content'>
+     <router-link v-for='item in brandlist1data.content' :to="{ name: 'sonpDeall',params:{ProductID:item.CastID} }" class='brandlist-dl'>
+      <dl>
         <dt>
           <img :src="item.PictureWebp">
         </dt>
@@ -13,6 +14,7 @@
           <span class="price">{{item.Description}}</span> 
         </dd>
       </dl>
+     </router-link>
     </div>
   </div>
 </template>
@@ -42,18 +44,20 @@ export default {
   white-space: nowrap; 
   overflow-x:scroll;
   text-align: center;
-  dl{
+  .brandlist-dl{
     width: 25%;
     text-align: center;
     display: inline-block;
-    dt{
-      img{
-        width: 100%;
+    dl{
+      dt{
+        img{
+          width: 100%;
+        }
       }
-    }
-    dd{
-      span{
-        color: #ccc;
+      dd{
+        span{
+          color: #ccc;
+        }
       }
     }
   }

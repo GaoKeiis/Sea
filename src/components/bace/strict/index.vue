@@ -6,14 +6,20 @@
     <div class="strict-content">
       <div class="strict-left">
         <div class="left-top">
+        <router-link :to="{ name: 'sonpDeall',params:{ProductID:strictdata.RecordsId0} }">
           <img :src="strictdata.Records0">
+        </router-link>    
         </div>
         <div class="left-bottom">
-          <img :src="strictdata.Records1">
+          <router-link :to="{ name: 'fenpage',params:{Subject:strictdata.RecordsId1} }">
+            <img :src="strictdata.Records1"> 
+          </router-link>    
         </div>
       </div>
       <div class="strict-right">
-        <img :src="strictdata.Records2">
+        <router-link :to="{ name: 'fenpage',params:{Subject:strictdata.RecordsId2} }">
+          <img :src="strictdata.Records2">
+        </router-link>  
       </div>
     </div>
   </div>

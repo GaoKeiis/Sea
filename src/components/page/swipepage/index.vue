@@ -2,8 +2,10 @@
   <div class="swipepage">
     <div class="swiper-container">
       <ul class="swiper-wrapper">
-        <li v-for="item in alldata" class="swiper-slide list">
-          <img :src="item.PictureWebp">
+        <li v-for="item in alldata" class="swiper-slide lists">
+          <img v-if="item.picture" :src="item.picture">
+          <img v-else-if="item.PictureWebp" :src='item.PictureWebp'>
+          <img v-else :src="item">
         </li>
       </ul>
       <div class="swiper-pagination"></div>
@@ -12,8 +14,8 @@
 </template>
 
 <script>
-import swiper from '@/static/js/swiper.min.js'
 import '@/static/css/swiper.css'
+import swiper from '@/static/js/swiper.js'  
 export default {
   name: 'swipepage',
   props: ['alldata'],
@@ -24,7 +26,6 @@ export default {
   },
   mounted () {
     this.swiperpage = new Swiper('.swiper-container', {
-      autoplay: 1000,
       pagination: '.swiper-pagination',
       paginationClickable: true
     })
@@ -36,13 +37,13 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-.list img{
-  width:100%;
+<style lang='less'>
+.lists {
+  width: 100%;
+  img{
+    display: block;
+    width:100%;
+  }
 }
 .swiper-pagination .swiper-pagination-bullet{
   width: 10px;

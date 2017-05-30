@@ -4,7 +4,9 @@
       <i class="iconfont icon-sousuo"></i>
       <input placeholder="搜索宝贝" type="text">
     </div>
-    <div class="submit">搜索</div>
+     <router-link to='/searchpage'>
+      <div class="submit">搜索</div>
+      </router-link>
   </div>
 </template>
 
@@ -15,7 +17,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped leng='scss'>
+<style scoped lang='less'>
 .header{
   background: #242424;
   border-bottom: 1px solid #e5e5e5;
@@ -35,7 +37,6 @@ export default {
 }
 .text input{
     width: 100%;
-    border: none;
     padding: 5px 0;
     background: #1a1a1a;
     color: #fff;

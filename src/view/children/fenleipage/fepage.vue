@@ -1,14 +1,11 @@
 <template>
   <div class="productList">
-    <div v-for='item in fontdata'>
-      <div class="product-title">
-        <h3>{{item.Title}}</h3>
-      </div>
       <div class="product-list">
-        <dl v-for='items in item.Products'>
+        <dl v-for='items in dataAll'>
           <router-link :to="{ name: 'sonpDeall',params:{ProductID:items.ProductID} }">
             <dt>
-              <img :src="items.PicturesWebp">
+                <img :src="items.PicturesWebp">
+                <span>月售{{items.MonthSalesNum}}件</span>
             </dt>
             <dd>
               <p class="nowrap">{{items.Subject}}</p>
@@ -23,8 +20,8 @@
 
 <script>
 export default {
-  name: 'productList',
-  props: ['fontdata']
+  name: 'fenchild',
+  props: ['dataAll']
 }
 </script>
 
@@ -33,7 +30,7 @@ export default {
 .product-title{
   padding: 10px 0;
   text-align: center;
-  background: #fff;cx 
+  background: #fff;
   h3{
     font-size: 14px;
   }
@@ -42,23 +39,31 @@ export default {
   display: flex;
   flex-wrap: wrap;
   dl{
-    padding: 0 6px;
-    width: 46%;
+    padding: 0 5px;
+    width: 45%;
     text-align: center;
     margin-bottom: 10px;
     dt{
       position: relative;
-      &:after {
-        content: '';
-        padding-top: 100%;
+      &:after{
+        content:'';
+        padding-top: 100%; 
         display: block;
+        width: 100%;
       }
       img{
         position: absolute;
-        left: 0;
         top: 0;
-        display: block;
+        left: 0;
         width: 100%;
+      }
+      span{
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          padding: .1rem .147rem;
+          background: rgba(0,0,0,.4);
+          color: #fff;
       }
     }
   }

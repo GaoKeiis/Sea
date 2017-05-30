@@ -5,8 +5,11 @@
     </div> 
     <ul class="recommend-uls">
       <li v-for='item in recommendate.Records'>
-        <img _v-7536536a="" :src="item.PictureWebp">
+        <router-link :to="{ name: 'fenpage',params:{Subject:item.CastID} }">
+          <img :src="item.PictureWebp">
+        </router-link>  
       </li>
+      
     </ul>
   </div>
 </template>

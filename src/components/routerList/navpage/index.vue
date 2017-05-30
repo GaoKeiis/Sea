@@ -2,11 +2,10 @@
   <div class="homepage">
       <swipepage :alldata='alldata'></swipepage> 
       <navList :navlistdata='navlistdata'></navList>
-      <banpage :bannerdata='bannerdata' :banerdata='banerdata'></banpage>
+      <banpage :bannerData='bannerData'></banpage>
       <strictpage :strictdata='strictdata'></strictpage> 
       <recommendpage :recommendate='recommendate'></recommendpage>
       <brandlistpagr :brandlist1data='brandlist1data'></brandlistpagr>
-      <watchList :brandlist2data='brandlist2data'></watchList>
       <powdered :brandlist3data='brandlist3data'></powdered>
       <productList :fontdata='fontdata'></productList>
   </div>
@@ -18,7 +17,6 @@ import banpage from '@/components/bace/banpage/'
 import strictpage from '@/components/bace/strict/'
 import recommendpage from '@/components/bace/recommend/'
 import brandlistpagr from '@/components/bace/brandlist/'
-import watchList from '@/components/bace/brandlist/watch'
 import powdered from '@/components/bace/brandlist/powdered'
 import productList from '@/components/page/productList/'
 export default {
@@ -28,22 +26,23 @@ export default {
       alldata: [],
       fontdata: [], 
       navlistdata: [],
-      bannerdata: [],
-      banerdata: [],
+      bannerData: {
+        bannerdata: [],
+        banerdata: []
+      },
       strictdata: {
         Channel: '',
         Records0: '',
         Records1: '',
-        Records2: ''
+        Records2: '',
+        RecordsId0: '',
+        RecordsId1 : '',
+        RecordsId2 : ''
       },
       recommendate: {
           Channel: ''
       },
       brandlist1data: {
-        title: '',
-        content: ''
-      },
-      brandlist2data: {
         title: '',
         content: ''
       },
@@ -60,49 +59,49 @@ export default {
     strictpage,
     recommendpage,
     brandlistpagr,
-    watchList,
     powdered,
     productList
   },
   created () {
-    this.getallData()
     this.getfootData()
+    this.getailData()
   },
   methods: {
-    getallData: function () {
-      this.$http.get('/api/alldata').then(function (response) {
-        let data = response.body
-        this.alldata = data.data[0].Records
-        this.navlistdata = data.data[1].Records
-        this.bannerdata = data.data[2].Records
-        this.banerdata = data.data[3].Records
-        this.strictdata = data.data[4]
-        this.strictdata.Channel =  this.strictdata.Channel.Name
-        this.strictdata.Records0 = this.strictdata.Records[0].PictureWebp
-        this.strictdata.Records1 = this.strictdata.Records[1].PictureWebp
-        this.strictdata.Records2 = this.strictdata.Records[2].PictureWebp
-        this.recommendate = data.data[5]
-        this.recommendate.Channel = this.recommendate.Channel.Name
-
-        this.brandlist1data = data.data[6]
-        this.brandlist1data.title = this.brandlist1data.Records[0].
-        PictureWebp
-        this.brandlist1data.content = data.data[7].Records
-
-        this.brandlist2data = data.data[8]
-        this.brandlist2data.title = this.brandlist2data.Records[0].PictureWebp
-        this.brandlist2data.content = data.data[9].Records
-        this.brandlist3data = data.data[10]
-        this.brandlist3data.title = this.brandlist3data.Records[0].PictureWebp
-        this.brandlist3data.content = data.data[11].Records
-      })
-    },
-    getfootData: function () {
-      this.$http.get('/api/foonterdata').then(function (response) {
-        let data = response.body
-        this.fontdata = data.data
+    getailData () {
+      this.$http.jsonp('http://m.haimi.com/api/ad-module/get?Alias=index_2&platform=WAP',{
+        jsonp: '_callback'
+      }).then(function(res){
+        let data = res.body
+          this.alldata = data.data[0].Records
+          this.navlistdata = data.data[1].Records
+          this.bannerData.bannerdata = data.data[2].Records
+          this.bannerData.banerdata = data.data[3].Records
+          this.strictdata = data.data[4]
+          this.strictdata.Channel =  this.strictdata.Channel.Name
+          this.strictdata.Records0 = this.strictdata.Records[0].PictureWebp
+          this.strictdata.Records1 = this.strictdata.Records[1].PictureWebp
+          this.strictdata.Records2 = this.strictdata.Records[2].PictureWebp
+          this.strictdata.RecordsId0 = this.strictdata.Records[0].CastID
+          this.strictdata.RecordsId1 = this.strictdata.Records[1].CastID
+          this.strictdata.RecordsId2 = this.strictdata.Records[2].CastID
+          this.recommendate = data.data[5]
+          this.recommendate.Channel = this.recommendate.Channel.Name
+          this.brandlist1data = data.data[6]
+          this.brandlist1data.title = this.brandlist1data.Records[0].
+          PictureWebp
+          this.brandlist1data.content = data.data[7].Records
+          this.brandlist3data = data.data[8]
+          this.brandlist3data.title = this.brandlist3data.Records[0].PictureWebp
+          this.brandlist3data.content = data.data[9].Records
       })  
-    }  
+    },
+    getfootData () {
+      this.$http.jsonp('http://m.haimi.com/api/nav/advert-team-products?NavID=2&page=1&pageSize=100&platform=WAP',{
+        jsonp: '_callback'
+      }).then(function(res){
+        this.fontdata = res.body.data
+      })
+    }
   }
 }
 </script>

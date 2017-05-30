@@ -1,9 +1,11 @@
 <template>
   <div class="navlist">
-    <dl v-for='item in navlistdata'>
-      <dt><img :src="item.PictureWebp" alt=""></dt>
-      <dd>{{item.SlideName}}</dd>
-    </dl>
+    <router-link v-for='item in navlistdata' :to="{ name: 'navlistchilde',params:{ActivityID:1077} }">
+      <dl>
+        <dt><img :src="item.PictureWebp" alt=""></dt>
+        <dd>{{item.SlideName}}</dd>
+      </dl>
+    </router-link>  
   </div>
 </template>
 
@@ -11,6 +13,7 @@
 export default {
   name: 'navlist',
   props: ['navlistdata']
+
 }
 </script>
 

@@ -5,9 +5,9 @@
       <img :src="item.PictureWebp" alt="">
     </div>
     <div class="introduce" v-else>
-      <a href="item.MoreLink">
+       <router-link :to="{ name: 'fenpage',params:{Subject:item.CastID} }">
          <span>{{item.SlideName}}</span>
-      </a>
+      </router-link>
     </div>
   </div>
 </div>
@@ -28,6 +28,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang='less'>
 .banner{
+  padding: 5px 0;
   img{
     width: 100%;
   }

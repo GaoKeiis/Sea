@@ -1,10 +1,14 @@
 <template>
   <div class="banpage">
-    <div v-for='item in bannerdata'>
-      <img :src="item.PictureWebp">
+    <div v-for='item in bannerData.bannerdata'>
+      <router-link :to="{ name: 'sonpDeall',params:{ProductID:item.CastID} }">
+        <img :src="item.PictureWebp">
+      </router-link>
     </div>
-    <div v-for='items in banerdata'>
-      <img :src="items.PictureWebp">
+    <div v-for='items in bannerData.banerdata'>
+      <router-link :to="{ name: 'sonpDeall',params:{ProductID:items.CastID} }">
+        <img :src="items.PictureWebp">
+      </router-link>
     </div>
   </div>
 </template>
@@ -12,7 +16,7 @@
 <script>
 export default {
   name: 'banpage',
-  props: ['bannerdata','banerdata']
+  props: ['bannerData']
 }
 </script>
 

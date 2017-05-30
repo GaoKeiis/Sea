@@ -23,11 +23,10 @@ export default {
   display: flex;
   flex-direction: column;
   background: #eee;
-  overflow: hidden;
 }
 .main{
   overflow: hidden;
-  height: 90%;
+  height: 100%;
   overflow-y: scroll;
 }
 

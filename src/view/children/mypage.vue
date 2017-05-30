@@ -6,7 +6,7 @@
         <div class="cle">
           <span class="fl f14 c_666">手机号：</span>
             <input type="number" @focus="fun" @blur="blur" v-model.trim='Cellphone' ref='numb'>
-            <span class="noe" ref='close' @click='clo'>Çå¿Õ</span>
+            <span class="noe" ref='close' @click='clo'>清除</span>
           </div>
           <div class="cle">
             <span class="sp1">验证码：</span>
@@ -63,8 +63,14 @@ export default {
             userPhoto: this.verification
         }
         var url = this.$route.query.to;
+        if(url){
         window.localStorage.setItem("userInfor",JSON.stringify(userData));
         this.$router.push({name:url})
+      }else{
+        this.$router.push({name:'my'})
+      }
+
+        
       }
     },
     yanclick (){

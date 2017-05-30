@@ -1,6 +1,6 @@
 <template>
-  <div class="footerList">
-    <router-link v-for='item in runData' :to="item.Link" active-class='on' class="list">
+  <div class="footerder">
+    <router-link v-for='item in runData' :to="item.Link" active-class='colo' class="footlist">
       <dl>
         <dt><i :class="item.icon"></i></dt>
         <dd>{{item.txt}}</dd>
@@ -42,14 +42,27 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang='less'>
-.footerList{
+<style lang='less'>
+.footerder{
   display: flex;
   text-align: center;
   background: #fff;
   border-top: 1px solid #eee;
+  .footlist{
+    padding: 5px 0;
+    flex: 1;
+    color: #999;
+    dl{
+      dt i{
+        font-size: 20px;
+      }
+      dd{
+        font-size: 14px;
+      }
+    }
+  }
 }
-.on{
+.colo{
   dl{
     dt i{
       color: #801a2a;
@@ -59,14 +72,5 @@ export default {
     }
   } 
 }
-.list{
-  flex: 1;
-  color: #999;
-  dl dt i{
-    font-size: 20px;
-  }
-  dl dd{
-    font-size: 14px;
-  }
-}
+
 </style>
